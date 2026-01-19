@@ -1,0 +1,20 @@
+# Polymarket Nitter Monitor Bot - Dependencies
+
+# Telegram bot framework (modern, async-native)
+aiogram>=3.4.0
+
+# HTTP requests with connection pooling
+requests>=2.31.0
+
+# HTML parsing
+beautifulsoup4>=4.12.0
+lxml>=5.1.0
+
+# Background task scheduling
+APScheduler>=3.10.0
+
+# Date/time utilities
+python-dateutil>=2.8.0
+
+# Environment variable handling (optional)
+python-dotenv>=1.0.0

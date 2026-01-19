@@ -1,0 +1,54 @@
+[Unit]
+Description=Polymarket Nitter Monitor Telegram Bot
+Documentation=https://github.com/yourusername/polymarket-nitter-bot
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# Change these to match your setup
+User=polybot
+Group=polybot
+WorkingDirectory=/opt/polymarket-bot
+
+# Python environment - adjust path as needed
+# For system Python:
+ExecStart=/usr/bin/python3 /opt/polymarket-bot/bot.py
+# For virtual environment (recommended):
+# ExecStart=/opt/polymarket-bot/venv/bin/python /opt/polymarket-bot/bot.py
+
+# Environment variables
+Environment=PYTHONUNBUFFERED=1
+# Set your Telegram bot token here or in config.py
+# Environment=TELEGRAM_BOT_TOKEN=your_token_here
+
+# Restart configuration
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=3
+
+# Security settings
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+# Allow write access to bot directory for database and logs
+ReadWritePaths=/opt/polymarket-bot
+
+# Resource limits
+MemoryMax=512M
+CPUQuota=50%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=polymarket-bot
+
+[Install]
+WantedBy=multi-user.target
